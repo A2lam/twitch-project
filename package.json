@@ -1,0 +1,27 @@
+{
+  "name": "twitch-project",
+  "version": "1.0.0",
+  "description": "Projet pour le compte de la matière Node Js",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/pm2 start pm2.yml",
+    "stop": "./node_modules/.bin/pm2 delete pm2.yml",
+    "logs": "./node_modules/.bin/pm2 logs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/A2lam/twitch-project.git"
+  },
+  "author": "Allam & Emmanuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/A2lam/twitch-project/issues"
+  },
+  "homepage": "https://gitlab.com/A2lam/twitch-project#README",
+  "dependencies": {
+    "express": "^4.16.3",
+    "joi": "^13.4.0",
+    "pm2": "^2.10.4"
+  }
+}
