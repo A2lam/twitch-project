@@ -20,8 +20,10 @@
   },
   "homepage": "https://gitlab.com/A2lam/twitch-project#README",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "joi": "^13.4.0",
+    "mysql": "^2.16.0",
     "pm2": "^2.10.4"
   }
 }
