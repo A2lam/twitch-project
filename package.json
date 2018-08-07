@@ -23,6 +23,7 @@
   },
   "homepage": "https://gitlab.com/A2lam/twitch-project#README",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "body-parser": "^1.18.3",
     "config": "^1.30.0",
     "express": "^4.16.3",
