@@ -4,6 +4,6 @@ import find from './middleware/find';
 
 const router = Router();
 
-router.get('users', find);
+router.get('/users', find);
 
 export default router;
