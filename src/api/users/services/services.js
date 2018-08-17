@@ -28,4 +28,17 @@ class UsersServices
       })
     ;
   }
+
+  createOne(data)
+  {
+    return joi.validate(data, model).then((validatedData) =>
+    {
+      client.mongodb()
+        .then((db) => db.collection(this.COLLECTION_NAME).insertOne(validatedData))
+        .then(response => response.ops[0])
+      ;
+    });
+  }
 }
+
+export default new UsersServices('users');
