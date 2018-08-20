@@ -1,5 +1,4 @@
 import joi from 'joi';
-import { ObjectId } from 'mongodb';
 import client from '../../../../database';
 import model, { modelForUpdate, modelForDisplay } from '../models/models';
 
@@ -23,10 +22,10 @@ class UsersServices {
       });
   }
 
-  findOne(id) {
-    return joi.validate(id, joi.string().required())
+  findOne(email) {
+    return joi.validate(id, joi.string().email().required())
       .then(() => client.mongodb())
-      .then(db => db.collection(this.COLLECTION_NAME).findOne({ _id: ObjectId(id) }))
+      .then(db => db.collection(this.COLLECTION_NAME).findOne({ email }))
       .then((element) => {
         if (!element) throw errorMessage;
 
@@ -42,32 +41,34 @@ class UsersServices {
     });
   }
 
-  updateOne(id, data) {
-    return joi.validate(id, joi.string().required())
+  updateOne(email, data) {
+    return joi.validate(email, joi.string().email().required())
       .then(() => joi.validate(data, modelForUpdate))
       .then((validatedData) => {
         return client.mongodb()
           .then((db) => {
             db.collection(this.COLLECTION_NAME).updateOne(
-              { _id: ObjectId(id) },
+              { email },
               { $set: validatedData },
             );
           });
       })
       .then((response) => {
-        if (response.matchedCount === 0) throw errorMessage;
+        // Dans le futur, on utilisera ici le middleware d'erreur
+        // if (response.matchedCount === 0) throw errorMessage;
 
         return response;
       })
-      .then(() => this.findOne(id));
+      .then(() => this.findOne(email));
   }
 
-  deleteOne(id) {
-    return joi.validate(id, joi.string().required())
+  deleteOne(email) {
+    return joi.validate(email, joi.string().email().required())
       .then(() => client.mongodb())
-      .then(db => db.collection(this.COLLECTION_NAME).deleteOne({ _id: ObjectId(id) }))
+      .then(db => db.collection(this.COLLECTION_NAME).deleteOne({ email }))
       .then((response) => {
-        if (response.deletedCount === 0) throw errorMessage;
+        // Dans le futur, on utilisera ici le middleware d'erreur
+        // if (response.deletedCount === 0) throw errorMessage;
 
         return response;
       });
