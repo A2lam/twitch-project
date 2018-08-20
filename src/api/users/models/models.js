@@ -8,13 +8,13 @@ const model = joi.object().keys({
   token: joi.string(),
 });
 
-export const modelForUpdate = joi.object.keys({
+export const modelForUpdate = joi.object().keys({
   firstName: joi.string(),
   lastName: joi.string(),
   email: joi.string().email(),
 });
 
-export const modelForDisplay = joi.object.keys({
+export const modelForDisplay = joi.object().keys({
   _id: joi.object(),
   firstName: joi.string(),
   lastName: joi.string(),
