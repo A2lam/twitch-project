@@ -1,9 +1,7 @@
 import usersServices from '../services/services';
 
-export default function getUsers(req, res, next)
-{
-  const
-  {
+export default function getUsers(req, res, next) {
+  const {
     first,
     offset,
     term,
@@ -12,6 +10,5 @@ export default function getUsers(req, res, next)
   return usersServices
     .find(parseInt(first, 10), parseInt(offset, 10), term)
     .then(response => res.send(response))
-    .catch(err => next(err))
-  ;
+    .catch(err => next(err));
 }
