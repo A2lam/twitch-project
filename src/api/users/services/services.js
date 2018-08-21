@@ -23,11 +23,12 @@ class UsersServices {
   }
 
   findOne(email) {
-    return joi.validate(id, joi.string().email().required())
+    return joi.validate(email, joi.string().email().required())
       .then(() => client.mongodb())
       .then(db => db.collection(this.COLLECTION_NAME).findOne({ email }))
       .then((element) => {
-        if (!element) throw errorMessage;
+        // Dans le futur, on utilisera ici le middleware d'erreur
+        // if (!element) throw errorMessage;
 
         return joi.validate(element, modelForDisplay, { stripUnknown: true }).value;
       });
@@ -35,7 +36,7 @@ class UsersServices {
 
   createOne(data) {
     return joi.validate(data, model).then((validatedData) => {
-      client.mongodb()
+      return client.mongodb()
         .then(db => db.collection(this.COLLECTION_NAME).insertOne(validatedData))
         .then(response => response.ops[0]);
     });
