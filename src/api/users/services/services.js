@@ -34,6 +34,14 @@ class UsersServices {
       });
   }
 
+  findByEmailAndPass(email, password) {
+    return client.mongodb()
+      .then(db => db.collection(this.COLLECTION_NAME).findOne({ email, password }))
+      .then((element) => {
+        return element;
+      });
+  }
+
   createOne(data) {
     return joi.validate(data, model).then((validatedData) => {
       return client.mongodb()
