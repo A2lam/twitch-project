@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import apiRouter from './api';
 
+require('./passport');
+
 const app = express();
 
 app.use(helmet());
