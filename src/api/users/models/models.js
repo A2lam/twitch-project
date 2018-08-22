@@ -5,13 +5,14 @@ const model = joi.object().keys({
   lastName: joi.string().required(),
   email: joi.string().email().required(),
   password: joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
-  token: joi.string(),
+  role: joi.string().required(),
 });
 
 export const modelForUpdate = joi.object().keys({
   firstName: joi.string(),
   lastName: joi.string(),
   email: joi.string().email(),
+  role: joi.string(),
 });
 
 export const modelForDisplay = joi.object().keys({
@@ -19,6 +20,7 @@ export const modelForDisplay = joi.object().keys({
   firstName: joi.string(),
   lastName: joi.string(),
   email: joi.string().email(),
+  role: joi.string(),
 });
 
 export default model;
