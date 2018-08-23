@@ -1,7 +1,7 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import passportJWT from 'passport-jwt';
-import usersServices from './api/users/services/services';
+import usersServices from '../src/api/users/services/services';
 
 const LocalStrategy = passportLocal.Strategy;
 const JWTStrategy = passportJWT.Strategy;
