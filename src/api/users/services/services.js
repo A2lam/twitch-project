@@ -38,7 +38,7 @@ class UsersServices {
     return client.mongodb()
       .then(db => db.collection(this.COLLECTION_NAME).findOne({ email, password }))
       .then((element) => {
-        return element;
+        return joi.validate(element, modelForDisplay, { stripUnknown: true }).value;
       });
   }
 
