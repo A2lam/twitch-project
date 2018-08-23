@@ -33,12 +33,31 @@ passport.use(new LocalStrategy({
       });
   })));
 
-passport.use(new JWTStrategy(
+passport.use('user-role', new JWTStrategy(
   opts,
   ((jwtPayload, done) => {
     return usersServices.findOne(jwtPayload.email)
       .then((user) => {
         if (!user) {
+          return done(null, false);
+        }
+
+        return done(null, user);
+      })
+      .catch(err => done(err));
+  }),
+));
+
+passport.use('admin-role', new JWTStrategy(
+  opts,
+  ((jwtPayload, done) => {
+    return usersServices.findOne(jwtPayload.email)
+      .then((user) => {
+        if (!user) {
+          return done(null, false);
+        }
+
+        if (user.role !== 'admin') {
           return done(null, false);
         }
 
