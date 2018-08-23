@@ -4,12 +4,14 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import apiRouter from './api';
 
+require('../config/passport');
+
 const app = express();
 
 app.use(helmet());
 app.use(bodyParser.json());
 
-app.use('/api', apiRouter)
+app.use('/api', apiRouter);
 
 app.listen(config.get('port'));
 

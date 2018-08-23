@@ -14,7 +14,7 @@ class UsersServices {
           .collection(this.COLLECTION_NAME)
           .find(term ? { $text: { $search: term } } : null,
             {
-              _id: 1, firstName: 1, lastNmae: 1, email: 1,
+              password: 0,
             })
           .skip(offset)
           .limit(first)
@@ -30,6 +30,14 @@ class UsersServices {
         // Dans le futur, on utilisera ici le middleware d'erreur
         // if (!element) throw errorMessage;
 
+        return joi.validate(element, modelForDisplay, { stripUnknown: true }).value;
+      });
+  }
+
+  findByEmailAndPass(email, password) {
+    return client.mongodb()
+      .then(db => db.collection(this.COLLECTION_NAME).findOne({ email, password }))
+      .then((element) => {
         return joi.validate(element, modelForDisplay, { stripUnknown: true }).value;
       });
   }
