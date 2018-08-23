@@ -10,12 +10,12 @@ import deleteOne from './middleware/deleteOne';
 const router = Router();
 
 // Users
-router.get('/users', passport.authenticate('jwt', { session: false }), find);
+router.get('/users', passport.authenticate('admin-role', { session: false }), find);
 
 // User
 router.post('/users', createOne);
-router.get('/users/:email', passport.authenticate('jwt', { session: false }), findOne);
-router.patch('/users/:email', passport.authenticate('jwt', { session: false }), updateOne);
-router.delete('/users/:email', passport.authenticate('jwt', { session: false }), deleteOne);
+router.get('/users/:email', passport.authenticate('user-role', { session: false }), findOne);
+router.patch('/users/:email', passport.authenticate('user-role', { session: false }), updateOne);
+router.delete('/users/:email', passport.authenticate('admin-role', { session: false }), deleteOne);
 
 export default router;
