@@ -14,7 +14,7 @@ class UsersServices {
           .collection(this.COLLECTION_NAME)
           .find(term ? { $text: { $search: term } } : null,
             {
-              _id: 1, firstName: 1, lastNmae: 1, email: 1,
+              password: 0,
             })
           .skip(offset)
           .limit(first)
