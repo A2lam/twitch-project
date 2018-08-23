@@ -4,4 +4,5 @@ module.exports = {
     name: 'twitch-project',
     url: 'mongodb://127.0.0.1:27017',
   },
+  secretKey: 'cle_secrete_chakal',
 };

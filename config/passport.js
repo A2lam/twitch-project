@@ -1,3 +1,4 @@
+import config from 'config';
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import passportJWT from 'passport-jwt';
@@ -7,9 +8,9 @@ const LocalStrategy = passportLocal.Strategy;
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
-let opts = {};
+const opts = {};
 opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'my_super_secret_key';
+opts.secretOrKey = config.get('secretKey');
 
 passport.use(new LocalStrategy({
   usernameField: 'email',

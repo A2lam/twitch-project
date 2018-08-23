@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import config from 'config';
 
 const router = Router();
 
@@ -21,7 +22,9 @@ router.post('/login', (req, res, next) => {
       }
 
       // Generation of the token using user info
-      const token = jwt.sign(user, 'my_super_secret_key');
+      const token = jwt.sign(user, config.get('secretKey'), {
+        expiresIn: 604800,
+      });
       return res.json({ user, token });
     });
   })(req, res, next);
