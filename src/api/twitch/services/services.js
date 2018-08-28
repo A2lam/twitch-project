@@ -27,10 +27,9 @@ class FavServices {
     });
   }
 
-  deleteOne(email) {
-    return joi.validate(email, joi.string().email().required())
-      .then(() => client.mongodb())
-      .then(db => db.collection(this.COLLECTION_NAME).deleteOne({ email }))
+  deleteByGameIdAndUser(user_id, game_id) {
+    return client.mongodb()
+      .then(db => db.collection(this.COLLECTION_NAME).deleteOne({ user_id, game_id }))
       .then((response) => {
         // Dans le futur, on utilisera ici le middleware d'erreur
         // if (response.deletedCount === 0) throw errorMessage;
