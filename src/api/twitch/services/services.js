@@ -7,12 +7,12 @@ class UsersServices {
     this.COLLECTION_NAME = collectionName;
   }
 
-  find(first = 20, offset = 0, term) {
+  findByUserId(user_id, first = 20, offset = 0) {
     return client.mongodb()
       .then((db) => {
         return db
           .collection(this.COLLECTION_NAME)
-          .find(term ? { $text: { $search: term } } : null)
+          .find({ user_id })
           .skip(offset)
           .limit(first)
           .toArray();
