@@ -2,7 +2,7 @@ import joi from 'joi';
 import client from '../../../../database';
 import model from '../models/models';
 
-class UsersServices {
+class FavServices {
   constructor(collectionName) {
     this.COLLECTION_NAME = collectionName;
   }
@@ -40,4 +40,4 @@ class UsersServices {
   }
 }
 
-export default new UsersServices('favoris');
+export default new FavServices('favoris');
